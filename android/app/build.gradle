@@ -35,11 +35,9 @@ android {
 
     kotlinOptions {
         jvmTarget = '1.8'
-        // ✅ إجبار Kotlin على استخدام إصدار متوافق
+        // ✅ إزالة الإعدادات الخاطئة
         freeCompilerArgs += [
-            '-Xuse-k2',
-            '-Xjvm-default=enable',
-            '-Xskip-metadata-version-check'
+            '-Xuse-k2'
         ]
     }
 
@@ -59,9 +57,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug
+            // ✅ تعطيل R8 بشكل كامل
             minifyEnabled false
             shrinkResources false
-            // ✅ تعطيل R8 لحل مشكلة Kotlin
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
